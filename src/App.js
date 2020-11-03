@@ -1,38 +1,61 @@
 import React from 'react';
-// import React, {Component} from 'react';
-// => can extend Component instead of React.Component
-import PropTypes from 'prop-types';
+import axios from 'axios';
+import Movie from './Movie';
+import './App.css';
 
 class App extends React.Component{
   state = {
-    count: 0
+    isLoading: true,
+    movies: []
   };
-  add = () => {
-    this.setState(current => ({
-      count: current.count + 1
-    }));
+  getMovies = async () => {
+    const {
+      data: {
+        data: {
+          movies
+        }
+      }
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+    this.setState({
+      movies,
+      isLoading: false
+    });
   };
-  minus = () => {
-    if (this.state.count === 0) {
-      this.setState(current => ({
-        count: 0
-      }));
-    } else {
-      this.setState(current => ({
-        count: current.count - 1
-      }));      
-    }
+  componentDidMount() {
+    this.getMovies();
   };
-  // changing state will re-render every time
   render(){
+    const {isLoading, movies} = this.state;
     return (
-      <div>
-        <h1>I am who I am</h1>
-        <h1>Start Counting {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    )
+      <section className="container">
+        {
+          isLoading 
+            ? (
+              <div className="loader">
+                <span className="loader_text">
+                  Loading...
+                </span>
+              </div>)
+            : (
+              <div className="movies">
+                {
+                  movies.map(movie => {
+                    return <Movie
+                      key={movie.id}
+                      id={movie.id} 
+                      year={movie.year} 
+                      title={movie.title} 
+                      summary={movie.summary}
+                      rating={movie.rating}
+                      poster={movie.medium_cover_image} 
+                      genres={movie.genres}            
+                    />
+                })}
+              </div>
+            )
+        }
+      </section>
+    );
   }
 }
 

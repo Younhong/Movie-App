@@ -1,5 +1,6 @@
-.movies .movie {
-    width: 40%;
+.detail {
+    margin-top: 70px;
+    width: 50%;
     background-color: white;
     margin-bottom: 70px;
     font-weight: 300;
@@ -10,7 +11,7 @@
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
   
-.movies .movie a {
+.detail a {
     display: grid;
     grid-template-columns: minmax(150px, 1fr) 2fr;
     grid-gap: 20px;
@@ -18,7 +19,7 @@
     color: inherit;
 }
   
-.movie img {
+.detail img {
     position: relative;
     top: -50px;
     max-width: 150px;
@@ -28,18 +29,18 @@
       0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
   
-.movie .movie_title, .movie .movie_year {
+.detail .detail_title, .detail .detail_year {
     margin: 0;
     font-weight: 300;
 }
   
-.movie .movie_title {
+.detail .detail_title {    
     margin-bottom: 5px;
     font-size: 24px;
     color: #2c2c2c;
 }
   
-.movie .movie_genres {
+.detail .detail_genres {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -48,7 +49,7 @@
     margin: 5px 0px;
 }
   
-.movie_genres li, .movie .movie_year {
+.detail_genres li, .detail .detail_year {
     margin-right: 10px;
     font-size: 14px;
 }

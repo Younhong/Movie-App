@@ -11,21 +11,28 @@ class Detail extends React.Component {
     render(){
         const {location} = this.props;
         if (location.state) {
+            const {
+                location: {
+                    state: {
+                        title, year, summary, genres, poster
+                    }
+                }
+            } = this.props;
             return (
                 <div className="detail">
-                    <img src={location.state.poster} 
-                        alt={location.state.title} 
-                        title={location.state.title} />
+                    <img src={poster} 
+                        alt={title} 
+                        title={title} />
                     <div className="detail_data">
-                        <h3 className="detail_title">{location.state.title}</h3>
-                        <h5 className="detail_year">{location.state.year}</h5>
+                        <h3 className="detail_title">{title}</h3>
+                        <h5 className="detail_year">{year}</h5>
                         <ul className="detail_genres">
-                            {location.state.genres.map((genre, index) => 
+                            {genres.map((genre, index) => 
                                 <li key={index} className="genres_genre">
                                     {genre}
                                 </li>)}
                         </ul>
-                        <p className="detail_summary">{location.state.summary}</p>
+                        <p className="detail_summary">{summary}</p>
                     </div>
                 </div>
             );
